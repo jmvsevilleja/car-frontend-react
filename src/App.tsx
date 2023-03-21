@@ -1,24 +1,34 @@
 import React from "react";
 import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import CarListPage from "./pages/CarListPage";
+import CarInfoPage from "./pages/CarInfoPage";
+import Layout from "./layouts/Layout";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1 className="text-3xl font-bold underline text-red-600">
-          React Typescript Tailwind Template
-        </h1>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="bg-gray-100 min-h-screen">
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Layout title="Car List">
+                <CarListPage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/cars/:id"
+            element={
+              <Layout title="Car Info">
+                <CarInfoPage />
+              </Layout>
+            }
+          />
+        </Routes>
+      </div>
+    </Router>
   );
 }
-
 export default App;
